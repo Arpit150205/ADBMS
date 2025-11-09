@@ -1,0 +1,136 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2822
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\froman\fcharset0 Times-Roman;\f1\fnil\fcharset0 Menlo-Regular;\f2\fnil\fcharset0 Menlo-Bold;
+}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue0;\red0\green0\blue0;\red57\green192\blue38;
+\red202\green51\blue35;\red125\green125\blue125;\red170\green171\blue37;}
+{\*\expandedcolortbl;;\cssrgb\c0\c0\c0;\csgray\c0;\cssrgb\c25706\c77963\c19557;
+\cssrgb\c83899\c28663\c18026;\cssrgb\c56352\c56352\c56352;\cssrgb\c72331\c71682\c18599;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\deftab720
+\pard\pardeftab720\partightenfactor0
+
+\f0\fs24 \cf0 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Create a database with suitable example using MongoDB and implement Inserting and saving document (batch insert:-\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f1\fs34 \cf3 \kerning1\expnd0\expndtw0 \CocoaLigature0 \outl0\strokewidth0 test> use school\
+switched to db school\
+school> db.createCollection.(\cf4 "students"\cf3 )\
+Uncaught:\
+
+\f2\b \cf5 SyntaxError
+\f1\b0 \cf3 : Unexpected token (1:20)\
+\
+
+\f2\b \cf5 >
+\f1\b0 \cf6  1 |\cf3  db\cf7 .\cf3 createCollection\cf7 .\cf3 (\cf4 "students"\cf3 )\
+ \cf6    |\cf3                      
+\f2\b \cf5 ^
+\f1\b0 \cf3 \
+ \cf6  2 |\cf3 \
+\
+school> db.createCollection(\cf4 "students"\cf3 )\
+\{ ok: \cf7 1\cf3  \}\
+school> db.students.insertOne(\{\cf7 roll_no\cf3 :\cf7 1\cf3 ,\cf7 name\cf3 :\cf4 "Aarav"\cf3 ,\cf7 age\cf3 :\cf7 20\cf3 ,\cf7 grade\cf3 :\cf4 "A"\cf3 \})\
+\{\
+  acknowledged: \cf7 true\cf3 ,\
+  insertedId: ObjectId(\cf4 '690f70cd5e287adbda535458'\cf3 )\
+\}\
+school> db.Students.insertMany([\
+|     \{ \cf7 roll_no\cf3 : \cf7 2\cf3 , \cf7 name\cf3 : \cf4 "Priya\cf3  \cf4 Patel"\cf3 , age: \cf7 21\cf3 , \cf7 grade\cf3 : \cf4 "B"\cf3  \},\
+|     \{ \cf7 roll_no\cf3 : \cf7 3\cf3 , \cf7 name\cf3 : \cf4 "Rahul\cf3  \cf4 Verma"\cf3 , age: \cf7 19\cf3 , \cf7 grade\cf3 : \cf4 "A"\cf3  \},\
+|     \{ \cf7 roll_no\cf3 : \cf7 4\cf3 , \cf7 name\cf3 : \cf4 "Sneha\cf3  \cf4 Gupta"\cf3 , age: \cf7 22\cf3 , \cf7 grade\cf3 : \cf4 "C"\cf3  \}\
+| ])\
+\{\
+  acknowledged: \cf7 true\cf3 ,\
+  insertedIds: \{\
+    \cf4 '0'\cf3 : ObjectId(\cf4 '690f70da5e287adbda535459'\cf3 ),\
+    \cf4 '1'\cf3 : ObjectId(\cf4 '690f70da5e287adbda53545a'\cf3 ),\
+    \cf4 '2'\cf3 : ObjectId(\cf4 '690f70da5e287adbda53545b'\cf3 )\
+  \}\
+\}\
+school> db.students.find().pretty()\
+[\
+  \{\
+    _id: ObjectId(\cf4 '690f70cd5e287adbda535458'\cf3 ),\
+    roll_no: \cf7 1\cf3 ,\
+    name: \cf4 'Aarav'\cf3 ,\
+    age: \cf7 20\cf3 ,\
+    grade: \cf4 'A'\cf3 \
+  \}\
+]\
+school> db.createCollection(\cf4 "Validatestudent"\cf3 ,\{\cf7 validator\cf3 :\{\cf7 $jsonSchema\cf3 :\{\cf7 required\cf3 :[\cf4 "rollno"\cf3 ,\cf4 "name"\cf3 ,\cf4 "age"\cf3 ],\cf7 properties\cf3 :\{\cf7 rollno\cf3 :\{\cf7 bsonType\cf3 :\cf4 "int"\cf3 \},\cf7 name\cf3 :\{\cf7 bsonType\cf3 :\cf4 "string"\cf3 \},\cf7 age\cf3 :\{\cf7 bsonType\cf3 :\cf4 "int"\cf3 \}\}\}\}\})\
+\{ ok: \cf7 1\cf3  \}\
+school> db.Validatestudent.insertOne(\{\cf7 roll_no\cf3 :\cf4 "Two"\cf3 ,\cf7 name\cf3 :\cf4 "Priya"\cf3 ,\cf7 age\cf3 :\cf7 21\cf3 \})\
+Uncaught:\
+
+\f2\b \cf5 MongoServerError
+\f1\b0 \cf3 : Document failed validation\
+\cf7 Additional information\cf3 : \{\
+  failingDocumentId: ObjectId(\cf4 '690f72375e287adbda53545c'\cf3 ),\
+  details: \{\
+    operatorName: \cf4 '$jsonSchema'\cf3 ,\
+    schemaRulesNotSatisfied: [\
+      \{\
+        operatorName: \cf4 'required'\cf3 ,\
+        specifiedAs: \{ required: [ \cf4 'rollno'\cf3 , \cf4 'name'\cf3 , \cf4 'age'\cf3  ] \},\
+        missingProperties: [ \cf4 'rollno'\cf3  ]\
+      \}\
+    ]\
+  \}\
+\}\
+school> db.Students.save(\{\
+|     \cf7 roll_no\cf3 : \cf7 5\cf3 ,\
+|     \cf7 name\cf3 : \cf4 "Rohit\cf3  \cf4 Kumar"\cf3 ,\
+|     age: \cf7 23\cf3 ,\
+|     \cf7 grade\cf3 : \cf4 "B"\cf3 \
+| \})\
+
+\f2\b \cf5 TypeError
+\f1\b0 \cf3 : db.Students.save is not a function\
+school> db.Students.updateOne(\{\cf7 roll_no\cf3 :\cf7 4\cf3 \},\{\cf7 $set\cf3 :\{\cf7 name\cf3 :\cf4 "Arpit Bhande"\cf3 \}\})\
+\{\
+  acknowledged: \cf7 true\cf3 ,\
+  insertedId: 
+\f2\b null
+\f1\b0 ,\
+  matchedCount: \cf7 1\cf3 ,\
+  modifiedCount: \cf7 1\cf3 ,\
+  upsertedCount: \cf7 0\cf3 \
+\}\
+school> db.students.find().pretty()\
+[\
+  \{\
+    _id: ObjectId(\cf4 '690f70cd5e287adbda535458'\cf3 ),\
+    roll_no: \cf7 1\cf3 ,\
+    name: \cf4 'Aarav'\cf3 ,\
+    age: \cf7 20\cf3 ,\
+    grade: \cf4 'A'\cf3 \
+  \}\
+]\
+school> db.Students.find().pretty()\
+[\
+  \{\
+    _id: ObjectId(\cf4 '690f70da5e287adbda535459'\cf3 ),\
+    roll_no: \cf7 2\cf3 ,\
+    name: \cf4 'Priya Patel'\cf3 ,\
+    age: \cf7 21\cf3 ,\
+    grade: \cf4 'B'\cf3 \
+  \},\
+  \{\
+    _id: ObjectId(\cf4 '690f70da5e287adbda53545a'\cf3 ),\
+    roll_no: \cf7 3\cf3 ,\
+    name: \cf4 'Rahul Verma'\cf3 ,\
+    age: \cf7 19\cf3 ,\
+    grade: \cf4 'A'\cf3 \
+  \},\
+  \{\
+    _id: ObjectId(\cf4 '690f70da5e287adbda53545b'\cf3 ),\
+    roll_no: \cf7 4\cf3 ,\
+    name: \cf4 'Arpit Bhande'\cf3 ,\
+    age: \cf7 22\cf3 ,\
+    grade: \cf4 'C'\cf3 \
+  \}\
+]\
+school> \
+}
