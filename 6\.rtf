@@ -1,539 +1,497 @@
-{\rtf1\ansi\ansicpg1252\cocoartf2822
-\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fnil\fcharset0 Menlo-Regular;\f1\fnil\fcharset0 Menlo-Bold;}
-{\colortbl;\red255\green255\blue255;\red0\green0\blue0;\red57\green192\blue38;\red170\green171\blue37;
-\red56\green185\blue199;\red202\green51\blue35;\red125\green125\blue125;\red219\green39\blue218;}
-{\*\expandedcolortbl;;\csgray\c0;\cssrgb\c25706\c77963\c19557;\cssrgb\c72331\c71682\c18599;
-\cssrgb\c25546\c77007\c82023;\cssrgb\c83899\c28663\c18026;\cssrgb\c56352\c56352\c56352;\cssrgb\c89513\c29736\c88485;}
-\paperw11900\paperh16840\margl1440\margr1440\vieww28600\viewh17440\viewkind0
-\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
-
-\f0\fs30 \cf2 \CocoaLigature0 test> use studDB1\
-switched to db studDB1\
-studDB1> db.createCollection(\cf3 "students"\cf2 )\
-\{ ok: \cf4 1\cf2  \}\
-studDB1> db.students.insertMany([\
-|   \{ \cf4 name\cf2 : \cf3 "Ayush"\cf2 , age: \cf4 20\cf2 , \cf4 course\cf2 : \cf3 "B.Tech"\cf2 , marks: \cf4 85\cf2 , \cf4 city\cf2 : \cf3 "Pune"\cf2  \},\
-|   \{ \cf4 name\cf2 : \cf3 "Sneha"\cf2 , age: \cf4 22\cf2 , \cf4 course\cf2 : \cf3 "BCA"\cf2 , marks: \cf4 78\cf2 , \cf4 city\cf2 : \cf3 "Mumbai"\cf2  \},\
-|   \{ \cf4 name\cf2 : \cf3 "Ravi"\cf2 , age: \cf4 21\cf2 , \cf4 course\cf2 : \cf3 "B.Tech"\cf2 , marks: \cf4 92\cf2 , \cf4 city\cf2 : \cf3 "Delhi"\cf2  \},\
-|   \{ \cf4 name\cf2 : \cf3 "Priya"\cf2 , age: \cf4 23\cf2 , \cf4 course\cf2 : \cf3 "MBA"\cf2 , marks: \cf4 88\cf2 , \cf4 city\cf2 : \cf3 "Pune"\cf2  \},\
-|   \{ \cf4 name\cf2 : \cf3 "Karan"\cf2 , age: \cf4 20\cf2 , \cf4 course\cf2 : \cf3 "B.Sc"\cf2 , marks: \cf4 74\cf2 , \cf4 city\cf2 : \cf3 "Nagpur"\cf2  \},\
-|   \{ \cf4 name\cf2 : \cf3 "Neha"\cf2 , age: \cf4 21\cf2 , \cf4 course\cf2 : \cf3 "B.Tech"\cf2 , marks: \cf4 67\cf2 , \cf4 city\cf2 : \cf3 "Delhi"\cf2  \},\
-|   \{ \cf4 name\cf2 : \cf3 "Raj"\cf2 , age: \cf4 22\cf2 , \cf4 course\cf2 : \cf3 "MBA"\cf2 , marks: \cf4 95\cf2 , \cf4 city\cf2 : \cf3 "Mumbai"\cf2  \},\
-|   \{ \cf4 name\cf2 : \cf3 "Tina"\cf2 , age: \cf4 20\cf2 , \cf4 course\cf2 : \cf3 "BCA"\cf2 , marks: \cf4 80\cf2 , \cf4 city\cf2 : \cf3 "Pune"\cf2  \}\
-| ])\
-| \
-\{\
-  acknowledged: \cf4 true\cf2 ,\
-  insertedIds: \{\
-    \cf3 '0'\cf2 : ObjectId(\cf3 '69101f2a851a1b481d8a3445'\cf2 ),\
-    \cf3 '1'\cf2 : ObjectId(\cf3 '69101f2a851a1b481d8a3446'\cf2 ),\
-    \cf3 '2'\cf2 : ObjectId(\cf3 '69101f2a851a1b481d8a3447'\cf2 ),\
-    \cf3 '3'\cf2 : ObjectId(\cf3 '69101f2a851a1b481d8a3448'\cf2 ),\
-    \cf3 '4'\cf2 : ObjectId(\cf3 '69101f2a851a1b481d8a3449'\cf2 ),\
-    \cf3 '5'\cf2 : ObjectId(\cf3 '69101f2a851a1b481d8a344a'\cf2 ),\
-    \cf3 '6'\cf2 : ObjectId(\cf3 '69101f2a851a1b481d8a344b'\cf2 ),\
-    \cf3 '7'\cf2 : ObjectId(\cf3 '69101f2a851a1b481d8a344c'\cf2 )\
-  \}\
-\}\
-studDB1> \cf5 var\cf2  cursor = db.students.find()\
-\
-studDB1> cursor.forEach(printjson)\
-\{\
-  _id: ObjectId(\cf3 '69101f2a851a1b481d8a3445'\cf2 ),\
-  name: \cf3 'Ayush'\cf2 ,\
-  age: \cf4 20\cf2 ,\
-  course: \cf3 'B.Tech'\cf2 ,\
-  marks: \cf4 85\cf2 ,\
-  city: \cf3 'Pune'\cf2 \
-\}\
-\{\
-  _id: ObjectId(\cf3 '69101f2a851a1b481d8a3446'\cf2 ),\
-  name: \cf3 'Sneha'\cf2 ,\
-  age: \cf4 22\cf2 ,\
-  course: \cf3 'BCA'\cf2 ,\
-  marks: \cf4 78\cf2 ,\
-  city: \cf3 'Mumbai'\cf2 \
-\}\
-\{\
-  _id: ObjectId(\cf3 '69101f2a851a1b481d8a3447'\cf2 ),\
-  name: \cf3 'Ravi'\cf2 ,\
-  age: \cf4 21\cf2 ,\
-  course: \cf3 'B.Tech'\cf2 ,\
-  marks: \cf4 92\cf2 ,\
-  city: \cf3 'Delhi'\cf2 \
-\}\
-\{\
-  _id: ObjectId(\cf3 '69101f2a851a1b481d8a3448'\cf2 ),\
-  name: \cf3 'Priya'\cf2 ,\
-  age: \cf4 23\cf2 ,\
-  course: \cf3 'MBA'\cf2 ,\
-  marks: \cf4 88\cf2 ,\
-  city: \cf3 'Pune'\cf2 \
-\}\
-\{\
-  _id: ObjectId(\cf3 '69101f2a851a1b481d8a3449'\cf2 ),\
-  name: \cf3 'Karan'\cf2 ,\
-  age: \cf4 20\cf2 ,\
-  course: \cf3 'B.Sc'\cf2 ,\
-  marks: \cf4 74\cf2 ,\
-  city: \cf3 'Nagpur'\cf2 \
-\}\
-\{\
-  _id: ObjectId(\cf3 '69101f2a851a1b481d8a344a'\cf2 ),\
-  name: \cf3 'Neha'\cf2 ,\
-  age: \cf4 21\cf2 ,\
-  course: \cf3 'B.Tech'\cf2 ,\
-  marks: \cf4 67\cf2 ,\
-  city: \cf3 'Delhi'\cf2 \
-\}\
-\{\
-  _id: ObjectId(\cf3 '69101f2a851a1b481d8a344b'\cf2 ),\
-  name: \cf3 'Raj'\cf2 ,\
-  age: \cf4 22\cf2 ,\
-  course: \cf3 'MBA'\cf2 ,\
-  marks: \cf4 95\cf2 ,\
-  city: \cf3 'Mumbai'\cf2 \
-\}\
-\{\
-  _id: ObjectId(\cf3 '69101f2a851a1b481d8a344c'\cf2 ),\
-  name: \cf3 'Tina'\cf2 ,\
-  age: \cf4 20\cf2 ,\
-  course: \cf3 'BCA'\cf2 ,\
-  marks: \cf4 80\cf2 ,\
-  city: \cf3 'Pune'\cf2 \
-\}\
-\
-studDB1> db.students.find().limit(\cf4 3\cf2 )\
-[\
-  \{\
-    _id: ObjectId(\cf3 '69101f2a851a1b481d8a3445'\cf2 ),\
-    name: \cf3 'Ayush'\cf2 ,\
-    age: \cf4 20\cf2 ,\
-    course: \cf3 'B.Tech'\cf2 ,\
-    marks: \cf4 85\cf2 ,\
-    city: \cf3 'Pune'\cf2 \
-  \},\
-  \{\
-    _id: ObjectId(\cf3 '69101f2a851a1b481d8a3446'\cf2 ),\
-    name: \cf3 'Sneha'\cf2 ,\
-    age: \cf4 22\cf2 ,\
-    course: \cf3 'BCA'\cf2 ,\
-    marks: \cf4 78\cf2 ,\
-    city: \cf3 'Mumbai'\cf2 \
-  \},\
-  \{\
-    _id: ObjectId(\cf3 '69101f2a851a1b481d8a3447'\cf2 ),\
-    name: \cf3 'Ravi'\cf2 ,\
-    age: \cf4 21\cf2 ,\
-    course: \cf3 'B.Tech'\cf2 ,\
-    marks: \cf4 92\cf2 ,\
-    city: \cf3 'Delhi'\cf2 \
-  \}\
-]\
-studDB1> db.students.find().skip(\cf4 3\cf2 )\
-[\
-  \{\
-    _id: ObjectId(\cf3 '69101f2a851a1b481d8a3448'\cf2 ),\
-    name: \cf3 'Priya'\cf2 ,\
-    age: \cf4 23\cf2 ,\
-    course: \cf3 'MBA'\cf2 ,\
-    marks: \cf4 88\cf2 ,\
-    city: \cf3 'Pune'\cf2 \
-  \},\
-  \{\
-    _id: ObjectId(\cf3 '69101f2a851a1b481d8a3449'\cf2 ),\
-    name: \cf3 'Karan'\cf2 ,\
-    age: \cf4 20\cf2 ,\
-    course: \cf3 'B.Sc'\cf2 ,\
-    marks: \cf4 74\cf2 ,\
-    city: \cf3 'Nagpur'\cf2 \
-  \},\
-  \{\
-    _id: ObjectId(\cf3 '69101f2a851a1b481d8a344a'\cf2 ),\
-    name: \cf3 'Neha'\cf2 ,\
-    age: \cf4 21\cf2 ,\
-    course: \cf3 'B.Tech'\cf2 ,\
-    marks: \cf4 67\cf2 ,\
-    city: \cf3 'Delhi'\cf2 \
-  \},\
-  \{\
-    _id: ObjectId(\cf3 '69101f2a851a1b481d8a344b'\cf2 ),\
-    name: \cf3 'Raj'\cf2 ,\
-    age: \cf4 22\cf2 ,\
-    course: \cf3 'MBA'\cf2 ,\
-    marks: \cf4 95\cf2 ,\
-    city: \cf3 'Mumbai'\cf2 \
-  \},\
-  \{\
-    _id: ObjectId(\cf3 '69101f2a851a1b481d8a344c'\cf2 ),\
-    name: \cf3 'Tina'\cf2 ,\
-    age: \cf4 20\cf2 ,\
-    course: \cf3 'BCA'\cf2 ,\
-    marks: \cf4 80\cf2 ,\
-    city: \cf3 'Pune'\cf2 \
-  \}\
-]\
-studDB1> db.students.find().sort(\{\cf4 marks\cf2 :-\cf4 1\cf2 \})\
-[\
-  \{\
-    _id: ObjectId(\cf3 '69101f2a851a1b481d8a344b'\cf2 ),\
-    name: \cf3 'Raj'\cf2 ,\
-    age: \cf4 22\cf2 ,\
-    course: \cf3 'MBA'\cf2 ,\
-    marks: \cf4 95\cf2 ,\
-    city: \cf3 'Mumbai'\cf2 \
-  \},\
-  \{\
-    _id: ObjectId(\cf3 '69101f2a851a1b481d8a3447'\cf2 ),\
-    name: \cf3 'Ravi'\cf2 ,\
-    age: \cf4 21\cf2 ,\
-    course: \cf3 'B.Tech'\cf2 ,\
-    marks: \cf4 92\cf2 ,\
-    city: \cf3 'Delhi'\cf2 \
-  \},\
-  \{\
-    _id: ObjectId(\cf3 '69101f2a851a1b481d8a3448'\cf2 ),\
-    name: \cf3 'Priya'\cf2 ,\
-    age: \cf4 23\cf2 ,\
-    course: \cf3 'MBA'\cf2 ,\
-    marks: \cf4 88\cf2 ,\
-    city: \cf3 'Pune'\cf2 \
-  \},\
-  \{\
-    _id: ObjectId(\cf3 '69101f2a851a1b481d8a3445'\cf2 ),\
-    name: \cf3 'Ayush'\cf2 ,\
-    age: \cf4 20\cf2 ,\
-    course: \cf3 'B.Tech'\cf2 ,\
-    marks: \cf4 85\cf2 ,\
-    city: \cf3 'Pune'\cf2 \
-  \},\
-  \{\
-    _id: ObjectId(\cf3 '69101f2a851a1b481d8a344c'\cf2 ),\
-    name: \cf3 'Tina'\cf2 ,\
-    age: \cf4 20\cf2 ,\
-    course: \cf3 'BCA'\cf2 ,\
-    marks: \cf4 80\cf2 ,\
-    city: \cf3 'Pune'\cf2 \
-  \},\
-  \{\
-    _id: ObjectId(\cf3 '69101f2a851a1b481d8a3446'\cf2 ),\
-    name: \cf3 'Sneha'\cf2 ,\
-    age: \cf4 22\cf2 ,\
-    course: \cf3 'BCA'\cf2 ,\
-    marks: \cf4 78\cf2 ,\
-    city: \cf3 'Mumbai'\cf2 \
-  \},\
-  \{\
-    _id: ObjectId(\cf3 '69101f2a851a1b481d8a3449'\cf2 ),\
-    name: \cf3 'Karan'\cf2 ,\
-    age: \cf4 20\cf2 ,\
-    course: \cf3 'B.Sc'\cf2 ,\
-    marks: \cf4 74\cf2 ,\
-    city: \cf3 'Nagpur'\cf2 \
-  \},\
-  \{\
-    _id: ObjectId(\cf3 '69101f2a851a1b481d8a344a'\cf2 ),\
-    name: \cf3 'Neha'\cf2 ,\
-    age: \cf4 21\cf2 ,\
-    course: \cf3 'B.Tech'\cf2 ,\
-    marks: \cf4 67\cf2 ,\
-    city: \cf3 'Delhi'\cf2 \
-  \}\
-]\
-studDB1> db.students.find().sort(\{\cf4 age\cf2 :\cf4 1\cf2 ,\cf4 marks\cf2 :-\cf4 1\cf2 \})\
-[\
-  \{\
-    _id: ObjectId(\cf3 '69101f2a851a1b481d8a3445'\cf2 ),\
-    name: \cf3 'Ayush'\cf2 ,\
-    age: \cf4 20\cf2 ,\
-    course: \cf3 'B.Tech'\cf2 ,\
-    marks: \cf4 85\cf2 ,\
-    city: \cf3 'Pune'\cf2 \
-  \},\
-  \{\
-    _id: ObjectId(\cf3 '69101f2a851a1b481d8a344c'\cf2 ),\
-    name: \cf3 'Tina'\cf2 ,\
-    age: \cf4 20\cf2 ,\
-    course: \cf3 'BCA'\cf2 ,\
-    marks: \cf4 80\cf2 ,\
-    city: \cf3 'Pune'\cf2 \
-  \},\
-  \{\
-    _id: ObjectId(\cf3 '69101f2a851a1b481d8a3449'\cf2 ),\
-    name: \cf3 'Karan'\cf2 ,\
-    age: \cf4 20\cf2 ,\
-    course: \cf3 'B.Sc'\cf2 ,\
-    marks: \cf4 74\cf2 ,\
-    city: \cf3 'Nagpur'\cf2 \
-  \},\
-  \{\
-    _id: ObjectId(\cf3 '69101f2a851a1b481d8a3447'\cf2 ),\
-    name: \cf3 'Ravi'\cf2 ,\
-    age: \cf4 21\cf2 ,\
-    course: \cf3 'B.Tech'\cf2 ,\
-    marks: \cf4 92\cf2 ,\
-    city: \cf3 'Delhi'\cf2 \
-  \},\
-  \{\
-    _id: ObjectId(\cf3 '69101f2a851a1b481d8a344a'\cf2 ),\
-    name: \cf3 'Neha'\cf2 ,\
-    age: \cf4 21\cf2 ,\
-    course: \cf3 'B.Tech'\cf2 ,\
-    marks: \cf4 67\cf2 ,\
-    city: \cf3 'Delhi'\cf2 \
-  \},\
-  \{\
-    _id: ObjectId(\cf3 '69101f2a851a1b481d8a344b'\cf2 ),\
-    name: \cf3 'Raj'\cf2 ,\
-    age: \cf4 22\cf2 ,\
-    course: \cf3 'MBA'\cf2 ,\
-    marks: \cf4 95\cf2 ,\
-    city: \cf3 'Mumbai'\cf2 \
-  \},\
-  \{\
-    _id: ObjectId(\cf3 '69101f2a851a1b481d8a3446'\cf2 ),\
-    name: \cf3 'Sneha'\cf2 ,\
-    age: \cf4 22\cf2 ,\
-    course: \cf3 'BCA'\cf2 ,\
-    marks: \cf4 78\cf2 ,\
-    city: \cf3 'Mumbai'\cf2 \
-  \},\
-  \{\
-    _id: ObjectId(\cf3 '69101f2a851a1b481d8a3448'\cf2 ),\
-    name: \cf3 'Priya'\cf2 ,\
-    age: \cf4 23\cf2 ,\
-    course: \cf3 'MBA'\cf2 ,\
-    marks: \cf4 88\cf2 ,\
-    city: \cf3 'Pune'\cf2 \
-  \}\
-]\
-studDB1> db.students.find().sort(\{\cf4 marks\cf2 :-\cf4 1\cf2 \}).skip(\cf4 1\cf2 ).limit(\cf4 3\cf2 )\
-[\
-  \{\
-    _id: ObjectId(\cf3 '69101f2a851a1b481d8a3447'\cf2 ),\
-    name: \cf3 'Ravi'\cf2 ,\
-    age: \cf4 21\cf2 ,\
-    course: \cf3 'B.Tech'\cf2 ,\
-    marks: \cf4 92\cf2 ,\
-    city: \cf3 'Delhi'\cf2 \
-  \},\
-  \{\
-    _id: ObjectId(\cf3 '69101f2a851a1b481d8a3448'\cf2 ),\
-    name: \cf3 'Priya'\cf2 ,\
-    age: \cf4 23\cf2 ,\
-    course: \cf3 'MBA'\cf2 ,\
-    marks: \cf4 88\cf2 ,\
-    city: \cf3 'Pune'\cf2 \
-  \},\
-  \{\
-    _id: ObjectId(\cf3 '69101f2a851a1b481d8a3445'\cf2 ),\
-    name: \cf3 'Ayush'\cf2 ,\
-    age: \cf4 20\cf2 ,\
-    course: \cf3 'B.Tech'\cf2 ,\
-    marks: \cf4 85\cf2 ,\
-    city: \cf3 'Pune'\cf2 \
-  \}\
-]\
-studDB1> db.students.find(\{\},\{\cf4 name\cf2 :\cf4 1\cf2 ,\cf4 marks\cf2 :\cf4 1\cf2 ,\cf4 _id\cf2 :\cf4 0\cf2 \})\
-[\
-  \{ name: \cf3 'Ayush'\cf2 , marks: \cf4 85\cf2  \},\
-  \{ name: \cf3 'Sneha'\cf2 , marks: \cf4 78\cf2  \},\
-  \{ name: \cf3 'Ravi'\cf2 , marks: \cf4 92\cf2  \},\
-  \{ name: \cf3 'Priya'\cf2 , marks: \cf4 88\cf2  \},\
-  \{ name: \cf3 'Karan'\cf2 , marks: \cf4 74\cf2  \},\
-  \{ name: \cf3 'Neha'\cf2 , marks: \cf4 67\cf2  \},\
-  \{ name: \cf3 'Raj'\cf2 , marks: \cf4 95\cf2  \},\
-  \{ name: \cf3 'Tina'\cf2 , marks: \cf4 80\cf2  \}\
-]\
-studDB1> db.students.find(\{\cf4 course\cf2 :\cf3 "B.Tech"\cf2 ,\cf4 marks\cf2 :\{\cf4 $gt\cf2 :\cf4 80\cf2 \}).sort(\{\cf4 marks\cf2 :-\cf4 1\cf2 \}).limit(\cf4 2\cf2 )\
-Uncaught:\
-
-\f1\b \cf6 SyntaxError
-\f0\b0 \cf2 : Unexpected token, expected "," (1:48)\
-\
-
-\f1\b \cf6 >
-\f0\b0 \cf7  1 |\cf2  db\cf4 .\cf2 students\cf4 .\cf2 find(\{course\cf4 :\cf3 "B.Tech"\cf4 ,\cf2 marks\cf4 :\cf2 \{$gt\cf4 :\cf8 80\cf2 \})\cf4 .\cf2 sort(\{marks\cf4 :-\cf8 1\cf2 \})\cf4 .\cf2 limit(\cf8 2\cf2 )\
- \cf7    |\cf2                                                  
-\f1\b \cf6 ^
-\f0\b0 \cf2 \
- \cf7  2 |\cf2 \
-\
-studDB1> db.students.find(\{\cf4 course\cf2 :\cf3 "B.Tech"\cf2 ,\cf4 marks\cf2 :\{\cf4 $gt\cf2 :\cf4 80\cf2 \}\}).sort(\{\cf4 marks\cf2 :-\cf4 1\cf2 \}).limit(\cf4 2\cf2 )\
-[\
-  \{\
-    _id: ObjectId(\cf3 '69101f2a851a1b481d8a3447'\cf2 ),\
-    name: \cf3 'Ravi'\cf2 ,\
-    age: \cf4 21\cf2 ,\
-    course: \cf3 'B.Tech'\cf2 ,\
-    marks: \cf4 92\cf2 ,\
-    city: \cf3 'Delhi'\cf2 \
-  \},\
-  \{\
-    _id: ObjectId(\cf3 '69101f2a851a1b481d8a3445'\cf2 ),\
-    name: \cf3 'Ayush'\cf2 ,\
-    age: \cf4 20\cf2 ,\
-    course: \cf3 'B.Tech'\cf2 ,\
-    marks: \cf4 85\cf2 ,\
-    city: \cf3 'Pune'\cf2 \
-  \}\
-]\
-studDB1> db.students.find(\{\cf4 $or\cf2 :[\{\cf4 city\cf2 :\cf3 "Pune"\cf2 \},\{\cf4 marks\cf2 :\{\cf4 $gt\cf2 :\cf4 90\cf2 \}\}]\})\
-[\
-  \{\
-    _id: ObjectId(\cf3 '69101f2a851a1b481d8a3445'\cf2 ),\
-    name: \cf3 'Ayush'\cf2 ,\
-    age: \cf4 20\cf2 ,\
-    course: \cf3 'B.Tech'\cf2 ,\
-    marks: \cf4 85\cf2 ,\
-    city: \cf3 'Pune'\cf2 \
-  \},\
-  \{\
-    _id: ObjectId(\cf3 '69101f2a851a1b481d8a3447'\cf2 ),\
-    name: \cf3 'Ravi'\cf2 ,\
-    age: \cf4 21\cf2 ,\
-    course: \cf3 'B.Tech'\cf2 ,\
-    marks: \cf4 92\cf2 ,\
-    city: \cf3 'Delhi'\cf2 \
-  \},\
-  \{\
-    _id: ObjectId(\cf3 '69101f2a851a1b481d8a3448'\cf2 ),\
-    name: \cf3 'Priya'\cf2 ,\
-    age: \cf4 23\cf2 ,\
-    course: \cf3 'MBA'\cf2 ,\
-    marks: \cf4 88\cf2 ,\
-    city: \cf3 'Pune'\cf2 \
-  \},\
-  \{\
-    _id: ObjectId(\cf3 '69101f2a851a1b481d8a344b'\cf2 ),\
-    name: \cf3 'Raj'\cf2 ,\
-    age: \cf4 22\cf2 ,\
-    course: \cf3 'MBA'\cf2 ,\
-    marks: \cf4 95\cf2 ,\
-    city: \cf3 'Mumbai'\cf2 \
-  \},\
-  \{\
-    _id: ObjectId(\cf3 '69101f2a851a1b481d8a344c'\cf2 ),\
-    name: \cf3 'Tina'\cf2 ,\
-    age: \cf4 20\cf2 ,\
-    course: \cf3 'BCA'\cf2 ,\
-    marks: \cf4 80\cf2 ,\
-    city: \cf3 'Pune'\cf2 \
-  \}\
-]\
-studDB1> \cf5 var\cf2  topStudents = db.students.find(marks:\{\cf4 $gte\cf2 :\cf4 85\cf2 \}\}).sort(\{\cf4 marks\cf2 :-\cf4 1\cf2 \})\
-Uncaught:\
-
-\f1\b \cf6 SyntaxError
-\f0\b0 \cf2 : Unexpected token, expected "," (1:40)\
-\
-
-\f1\b \cf6 >
-\f0\b0 \cf7  1 |\cf2  \cf5 var\cf2  topStudents \cf4 =\cf2  db\cf4 .\cf2 students\cf4 .\cf2 find(marks\cf4 :\cf2 \{$gte\cf4 :\cf8 85\cf2 \}\})\cf4 .\cf2 sort(\{marks\cf4 :-\cf8 1\cf2 \})\
- \cf7    |\cf2                                          
-\f1\b \cf6 ^
-\f0\b0 \cf2 \
- \cf7  2 |\cf2 \
-\
-studDB1> \cf5 var\cf2  topStudents = db.students.find(\{\cf4 marks\cf2 :\{\cf4 $gte\cf2 :\cf4 85\cf2 \}\}).sort(\{\cf4 marks\cf2 :-\cf4 1\cf2 \}\})\
-Uncaught:\
-
-\f1\b \cf6 SyntaxError
-\f0\b0 \cf2 : Unexpected token, expected "," (1:69)\
-\
-
-\f1\b \cf6 >
-\f0\b0 \cf7  1 |\cf2  \cf5 var\cf2  topStudents \cf4 =\cf2  db\cf4 .\cf2 students\cf4 .\cf2 find(\{marks\cf4 :\cf2 \{$gte\cf4 :\cf8 85\cf2 \}\})\cf4 .\cf2 sort(\{marks\cf4 :-\cf8 1\cf2 \}\})\
- \cf7    |\cf2                                                                       
-\f1\b \cf6 ^
-\f0\b0 \cf2 \
- \cf7  2 |\cf2 \
-\
-studDB1> \cf5 var\cf2  topStudents = db.students.find(\{\cf4 marks\cf2 :\{\cf4 $gte\cf2 :\cf4 85\cf2 \}\}).sort(\{\cf4 marks\cf2 :-\cf4 1\cf2 \})\
-\
-studDB1> topStudents.forEach(printjson))\
-Uncaught:\
-
-\f1\b \cf6 SyntaxError
-\f0\b0 \cf2 : Missing semicolon. (1:30)\
-\
-
-\f1\b \cf6 >
-\f0\b0 \cf7  1 |\cf2  topStudents\cf4 .\cf2 forEach(printjson))\
- \cf7    |\cf2                                
-\f1\b \cf6 ^
-\f0\b0 \cf2 \
- \cf7  2 |\cf2 \
-\
-studDB1> topStudents.forEach(printjson)\
-\{\
-  _id: ObjectId(\cf3 '69101f2a851a1b481d8a344b'\cf2 ),\
-  name: \cf3 'Raj'\cf2 ,\
-  age: \cf4 22\cf2 ,\
-  course: \cf3 'MBA'\cf2 ,\
-  marks: \cf4 95\cf2 ,\
-  city: \cf3 'Mumbai'\cf2 \
-\}\
-\{\
-  _id: ObjectId(\cf3 '69101f2a851a1b481d8a3447'\cf2 ),\
-  name: \cf3 'Ravi'\cf2 ,\
-  age: \cf4 21\cf2 ,\
-  course: \cf3 'B.Tech'\cf2 ,\
-  marks: \cf4 92\cf2 ,\
-  city: \cf3 'Delhi'\cf2 \
-\}\
-\{\
-  _id: ObjectId(\cf3 '69101f2a851a1b481d8a3448'\cf2 ),\
-  name: \cf3 'Priya'\cf2 ,\
-  age: \cf4 23\cf2 ,\
-  course: \cf3 'MBA'\cf2 ,\
-  marks: \cf4 88\cf2 ,\
-  city: \cf3 'Pune'\cf2 \
-\}\
-\{\
-  _id: ObjectId(\cf3 '69101f2a851a1b481d8a3445'\cf2 ),\
-  name: \cf3 'Ayush'\cf2 ,\
-  age: \cf4 20\cf2 ,\
-  course: \cf3 'B.Tech'\cf2 ,\
-  marks: \cf4 85\cf2 ,\
-  city: \cf3 'Pune'\cf2 \
-\}\
-\
-studDB1> topStudents.forEach(\cf3 "Name:"\cf2 ,doc.name,\cf3 "|Marks:"\cf2 ,doc.marks))\
-Uncaught:\
-
-\f1\b \cf6 SyntaxError
-\f0\b0 \cf2 : Missing semicolon. (1:57)\
-\
-
-\f1\b \cf6 >
-\f0\b0 \cf7  1 |\cf2  topStudents\cf4 .\cf2 forEach(\cf3 "Name:"\cf4 ,\cf2 doc\cf4 .\cf2 name\cf4 ,\cf3 "|Marks:"\cf4 ,\cf2 doc\cf4 .\cf2 marks))\
- \cf7    |\cf2                                                           
-\f1\b \cf6 ^
-\f0\b0 \cf2 \
- \cf7  2 |\cf2 \
-\
-studDB1> topStudents.forEach(doc => print(\cf3 "Name:"\cf2 ,doc.name,\cf3 "|Marks:"\cf2 ,doc.marks))\
-\
-studDB1> topstudents.forEach(doc => print(\cf3 "Name:"\cf2 ,doc.name,\cf3 "|Marks:"\cf2 ,doc.marks))\
-
-\f1\b \cf6 ReferenceError
-\f0\b0 \cf2 : topstudents is not defined\
-studDB1> topStudents.forEach(\cf5 function\cf2 (doc) \{\
-|   print(\cf3 "Name:"\cf2 , doc.name, \cf3 "|\cf2  \cf3 Marks:"\cf2 , doc.marks)\
-| \})\
-| \
-\
-studDB1> \cf5 var\cf2  TopStudents = db.students.find(\{\cf4 marks\cf2 :\{\cf4 $gte\cf2 :\cf4 85\cf2 \}\}).sort(\{\cf4 marks\cf2 :-\cf4 1\cf2 \})\
-\
-studDB1> topStudents.forEach(\cf5 function\cf2 (doc)\{print(\cf3 "Name:"\cf2 ,doc.name,\cf3 "|Marks:"\cf2 ,doc.marks)\}\
-| )\
-\
-studDB1> TopStudents.forEach(\cf5 function\cf2  (doc) \{print(\cf3 "Name:"\cf2 , doc.name, \cf3 "|Marks:"\cf2 , doc.marks)\} )\
-Name: Raj |Marks: \cf4 95\cf2 \
-Name: Ravi |Marks: \cf4 92\cf2 \
-Name: Priya |Marks: \cf4 88\cf2 \
-Name: Ayush |Marks: \cf4 85\cf2 \
-\
-studDB1> \
+test> use studDB1
+switched to db studDB1
+studDB1> db.createCollection("students")
+{ ok: 1 }
+studDB1> db.students.insertMany([
+|   { name: "Ayush", age: 20, course: "B.Tech", marks: 85, city: "Pune" },
+|   { name: "Sneha", age: 22, course: "BCA", marks: 78, city: "Mumbai" },
+|   { name: "Ravi", age: 21, course: "B.Tech", marks: 92, city: "Delhi" },
+|   { name: "Priya", age: 23, course: "MBA", marks: 88, city: "Pune" },
+|   { name: "Karan", age: 20, course: "B.Sc", marks: 74, city: "Nagpur" },
+|   { name: "Neha", age: 21, course: "B.Tech", marks: 67, city: "Delhi" },
+|   { name: "Raj", age: 22, course: "MBA", marks: 95, city: "Mumbai" },
+|   { name: "Tina", age: 20, course: "BCA", marks: 80, city: "Pune" }
+| ])
+| 
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('69101f2a851a1b481d8a3445'),
+    '1': ObjectId('69101f2a851a1b481d8a3446'),
+    '2': ObjectId('69101f2a851a1b481d8a3447'),
+    '3': ObjectId('69101f2a851a1b481d8a3448'),
+    '4': ObjectId('69101f2a851a1b481d8a3449'),
+    '5': ObjectId('69101f2a851a1b481d8a344a'),
+    '6': ObjectId('69101f2a851a1b481d8a344b'),
+    '7': ObjectId('69101f2a851a1b481d8a344c')
+  }
 }
+studDB1> var cursor = db.students.find()
+
+studDB1> cursor.forEach(printjson)
+{
+  _id: ObjectId('69101f2a851a1b481d8a3445'),
+  name: 'Ayush',
+  age: 20,
+  course: 'B.Tech',
+  marks: 85,
+  city: 'Pune'
+}
+{
+  _id: ObjectId('69101f2a851a1b481d8a3446'),
+  name: 'Sneha',
+  age: 22,
+  course: 'BCA',
+  marks: 78,
+  city: 'Mumbai'
+}
+{
+  _id: ObjectId('69101f2a851a1b481d8a3447'),
+  name: 'Ravi',
+  age: 21,
+  course: 'B.Tech',
+  marks: 92,
+  city: 'Delhi'
+}
+{
+  _id: ObjectId('69101f2a851a1b481d8a3448'),
+  name: 'Priya',
+  age: 23,
+  course: 'MBA',
+  marks: 88,
+  city: 'Pune'
+}
+{
+  _id: ObjectId('69101f2a851a1b481d8a3449'),
+  name: 'Karan',
+  age: 20,
+  course: 'B.Sc',
+  marks: 74,
+  city: 'Nagpur'
+}
+{
+  _id: ObjectId('69101f2a851a1b481d8a344a'),
+  name: 'Neha',
+  age: 21,
+  course: 'B.Tech',
+  marks: 67,
+  city: 'Delhi'
+}
+{
+  _id: ObjectId('69101f2a851a1b481d8a344b'),
+  name: 'Raj',
+  age: 22,
+  course: 'MBA',
+  marks: 95,
+  city: 'Mumbai'
+}
+{
+  _id: ObjectId('69101f2a851a1b481d8a344c'),
+  name: 'Tina',
+  age: 20,
+  course: 'BCA',
+  marks: 80,
+  city: 'Pune'
+}
+
+studDB1> db.students.find().limit(3)
+[
+  {
+    _id: ObjectId('69101f2a851a1b481d8a3445'),
+    name: 'Ayush',
+    age: 20,
+    course: 'B.Tech',
+    marks: 85,
+    city: 'Pune'
+  },
+  {
+    _id: ObjectId('69101f2a851a1b481d8a3446'),
+    name: 'Sneha',
+    age: 22,
+    course: 'BCA',
+    marks: 78,
+    city: 'Mumbai'
+  },
+  {
+    _id: ObjectId('69101f2a851a1b481d8a3447'),
+    name: 'Ravi',
+    age: 21,
+    course: 'B.Tech',
+    marks: 92,
+    city: 'Delhi'
+  }
+]
+studDB1> db.students.find().skip(3)
+[
+  {
+    _id: ObjectId('69101f2a851a1b481d8a3448'),
+    name: 'Priya',
+    age: 23,
+    course: 'MBA',
+    marks: 88,
+    city: 'Pune'
+  },
+  {
+    _id: ObjectId('69101f2a851a1b481d8a3449'),
+    name: 'Karan',
+    age: 20,
+    course: 'B.Sc',
+    marks: 74,
+    city: 'Nagpur'
+  },
+  {
+    _id: ObjectId('69101f2a851a1b481d8a344a'),
+    name: 'Neha',
+    age: 21,
+    course: 'B.Tech',
+    marks: 67,
+    city: 'Delhi'
+  },
+  {
+    _id: ObjectId('69101f2a851a1b481d8a344b'),
+    name: 'Raj',
+    age: 22,
+    course: 'MBA',
+    marks: 95,
+    city: 'Mumbai'
+  },
+  {
+    _id: ObjectId('69101f2a851a1b481d8a344c'),
+    name: 'Tina',
+    age: 20,
+    course: 'BCA',
+    marks: 80,
+    city: 'Pune'
+  }
+]
+studDB1> db.students.find().sort({marks:-1})
+[
+  {
+    _id: ObjectId('69101f2a851a1b481d8a344b'),
+    name: 'Raj',
+    age: 22,
+    course: 'MBA',
+    marks: 95,
+    city: 'Mumbai'
+  },
+  {
+    _id: ObjectId('69101f2a851a1b481d8a3447'),
+    name: 'Ravi',
+    age: 21,
+    course: 'B.Tech',
+    marks: 92,
+    city: 'Delhi'
+  },
+  {
+    _id: ObjectId('69101f2a851a1b481d8a3448'),
+    name: 'Priya',
+    age: 23,
+    course: 'MBA',
+    marks: 88,
+    city: 'Pune'
+  },
+  {
+    _id: ObjectId('69101f2a851a1b481d8a3445'),
+    name: 'Ayush',
+    age: 20,
+    course: 'B.Tech',
+    marks: 85,
+    city: 'Pune'
+  },
+  {
+    _id: ObjectId('69101f2a851a1b481d8a344c'),
+    name: 'Tina',
+    age: 20,
+    course: 'BCA',
+    marks: 80,
+    city: 'Pune'
+  },
+  {
+    _id: ObjectId('69101f2a851a1b481d8a3446'),
+    name: 'Sneha',
+    age: 22,
+    course: 'BCA',
+    marks: 78,
+    city: 'Mumbai'
+  },
+  {
+    _id: ObjectId('69101f2a851a1b481d8a3449'),
+    name: 'Karan',
+    age: 20,
+    course: 'B.Sc',
+    marks: 74,
+    city: 'Nagpur'
+  },
+  {
+    _id: ObjectId('69101f2a851a1b481d8a344a'),
+    name: 'Neha',
+    age: 21,
+    course: 'B.Tech',
+    marks: 67,
+    city: 'Delhi'
+  }
+]
+studDB1> db.students.find().sort({age:1,marks:-1})
+[
+  {
+    _id: ObjectId('69101f2a851a1b481d8a3445'),
+    name: 'Ayush',
+    age: 20,
+    course: 'B.Tech',
+    marks: 85,
+    city: 'Pune'
+  },
+  {
+    _id: ObjectId('69101f2a851a1b481d8a344c'),
+    name: 'Tina',
+    age: 20,
+    course: 'BCA',
+    marks: 80,
+    city: 'Pune'
+  },
+  {
+    _id: ObjectId('69101f2a851a1b481d8a3449'),
+    name: 'Karan',
+    age: 20,
+    course: 'B.Sc',
+    marks: 74,
+    city: 'Nagpur'
+  },
+  {
+    _id: ObjectId('69101f2a851a1b481d8a3447'),
+    name: 'Ravi',
+    age: 21,
+    course: 'B.Tech',
+    marks: 92,
+    city: 'Delhi'
+  },
+  {
+    _id: ObjectId('69101f2a851a1b481d8a344a'),
+    name: 'Neha',
+    age: 21,
+    course: 'B.Tech',
+    marks: 67,
+    city: 'Delhi'
+  },
+  {
+    _id: ObjectId('69101f2a851a1b481d8a344b'),
+    name: 'Raj',
+    age: 22,
+    course: 'MBA',
+    marks: 95,
+    city: 'Mumbai'
+  },
+  {
+    _id: ObjectId('69101f2a851a1b481d8a3446'),
+    name: 'Sneha',
+    age: 22,
+    course: 'BCA',
+    marks: 78,
+    city: 'Mumbai'
+  },
+  {
+    _id: ObjectId('69101f2a851a1b481d8a3448'),
+    name: 'Priya',
+    age: 23,
+    course: 'MBA',
+    marks: 88,
+    city: 'Pune'
+  }
+]
+studDB1> db.students.find().sort({marks:-1}).skip(1).limit(3)
+[
+  {
+    _id: ObjectId('69101f2a851a1b481d8a3447'),
+    name: 'Ravi',
+    age: 21,
+    course: 'B.Tech',
+    marks: 92,
+    city: 'Delhi'
+  },
+  {
+    _id: ObjectId('69101f2a851a1b481d8a3448'),
+    name: 'Priya',
+    age: 23,
+    course: 'MBA',
+    marks: 88,
+    city: 'Pune'
+  },
+  {
+    _id: ObjectId('69101f2a851a1b481d8a3445'),
+    name: 'Ayush',
+    age: 20,
+    course: 'B.Tech',
+    marks: 85,
+    city: 'Pune'
+  }
+]
+studDB1> db.students.find({},{name:1,marks:1,_id:0})
+[
+  { name: 'Ayush', marks: 85 },
+  { name: 'Sneha', marks: 78 },
+  { name: 'Ravi', marks: 92 },
+  { name: 'Priya', marks: 88 },
+  { name: 'Karan', marks: 74 },
+  { name: 'Neha', marks: 67 },
+  { name: 'Raj', marks: 95 },
+  { name: 'Tina', marks: 80 }
+]
+studDB1> db.students.find({course:"B.Tech",marks:{$gt:80}).sort({marks:-1}).limit(2)
+Uncaught:
+SyntaxError: Unexpected token, expected "," (1:48)
+
+> 1 | db.students.find({course:"B.Tech",marks:{$gt:80}).sort({marks:-1}).limit(2)
+    |                                                 ^
+  2 |
+
+studDB1> db.students.find({course:"B.Tech",marks:{$gt:80}}).sort({marks:-1}).limit(2)
+[
+  {
+    _id: ObjectId('69101f2a851a1b481d8a3447'),
+    name: 'Ravi',
+    age: 21,
+    course: 'B.Tech',
+    marks: 92,
+    city: 'Delhi'
+  },
+  {
+    _id: ObjectId('69101f2a851a1b481d8a3445'),
+    name: 'Ayush',
+    age: 20,
+    course: 'B.Tech',
+    marks: 85,
+    city: 'Pune'
+  }
+]
+studDB1> db.students.find({$or:[{city:"Pune"},{marks:{$gt:90}}]})
+[
+  {
+    _id: ObjectId('69101f2a851a1b481d8a3445'),
+    name: 'Ayush',
+    age: 20,
+    course: 'B.Tech',
+    marks: 85,
+    city: 'Pune'
+  },
+  {
+    _id: ObjectId('69101f2a851a1b481d8a3447'),
+    name: 'Ravi',
+    age: 21,
+    course: 'B.Tech',
+    marks: 92,
+    city: 'Delhi'
+  },
+  {
+    _id: ObjectId('69101f2a851a1b481d8a3448'),
+    name: 'Priya',
+    age: 23,
+    course: 'MBA',
+    marks: 88,
+    city: 'Pune'
+  },
+  {
+    _id: ObjectId('69101f2a851a1b481d8a344b'),
+    name: 'Raj',
+    age: 22,
+    course: 'MBA',
+    marks: 95,
+    city: 'Mumbai'
+  },
+  {
+    _id: ObjectId('69101f2a851a1b481d8a344c'),
+    name: 'Tina',
+    age: 20,
+    course: 'BCA',
+    marks: 80,
+    city: 'Pune'
+  }
+]
+studDB1> var topStudents = db.students.find(marks:{$gte:85}}).sort({marks:-1})
+Uncaught:
+SyntaxError: Unexpected token, expected "," (1:40)
+
+> 1 | var topStudents = db.students.find(marks:{$gte:85}}).sort({marks:-1})
+    |                                         ^
+  2 |
+
+studDB1> var topStudents = db.students.find({marks:{$gte:85}}).sort({marks:-1}})
+Uncaught:
+SyntaxError: Unexpected token, expected "," (1:69)
+
+> 1 | var topStudents = db.students.find({marks:{$gte:85}}).sort({marks:-1}})
+    |                                                                      ^
+  2 |
+
+studDB1> var topStudents = db.students.find({marks:{$gte:85}}).sort({marks:-1})
+
+studDB1> topStudents.forEach(printjson))
+Uncaught:
+SyntaxError: Missing semicolon. (1:30)
+
+> 1 | topStudents.forEach(printjson))
+    |                               ^
+  2 |
+
+studDB1> topStudents.forEach(printjson)
+{
+  _id: ObjectId('69101f2a851a1b481d8a344b'),
+  name: 'Raj',
+  age: 22,
+  course: 'MBA',
+  marks: 95,
+  city: 'Mumbai'
+}
+{
+  _id: ObjectId('69101f2a851a1b481d8a3447'),
+  name: 'Ravi',
+  age: 21,
+  course: 'B.Tech',
+  marks: 92,
+  city: 'Delhi'
+}
+{
+  _id: ObjectId('69101f2a851a1b481d8a3448'),
+  name: 'Priya',
+  age: 23,
+  course: 'MBA',
+  marks: 88,
+  city: 'Pune'
+}
+{
+  _id: ObjectId('69101f2a851a1b481d8a3445'),
+  name: 'Ayush',
+  age: 20,
+  course: 'B.Tech',
+  marks: 85,
+  city: 'Pune'
+}
+
+studDB1> topStudents.forEach("Name:",doc.name,"|Marks:",doc.marks))
+Uncaught:
+SyntaxError: Missing semicolon. (1:57)
+
+> 1 | topStudents.forEach("Name:",doc.name,"|Marks:",doc.marks))
+    |                                                          ^
+  2 |
+
+studDB1> topStudents.forEach(doc => print("Name:",doc.name,"|Marks:",doc.marks))
+
+studDB1> topstudents.forEach(doc => print("Name:",doc.name,"|Marks:",doc.marks))
+ReferenceError: topstudents is not defined
+studDB1> topStudents.forEach(function(doc) {
+|   print("Name:", doc.name, "| Marks:", doc.marks)
+| })
+| 
+
+studDB1> var TopStudents = db.students.find({marks:{$gte:85}}).sort({marks:-1})
+
+studDB1> topStudents.forEach(function(doc){print("Name:",doc.name,"|Marks:",doc.marks)}
+| )
+
+studDB1> TopStudents.forEach(function (doc) {print("Name:", doc.name, "|Marks:", doc.marks)} )
+Name: Raj |Marks: 95
+Name: Ravi |Marks: 92
+Name: Priya |Marks: 88
+Name: Ayush |Marks: 85
+
+studDB1> 
