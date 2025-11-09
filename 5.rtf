@@ -1,431 +1,375 @@
-{\rtf1\ansi\ansicpg1252\cocoartf2822
-\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fnil\fcharset0 Menlo-Regular;\f1\fnil\fcharset0 Menlo-Bold;}
-{\colortbl;\red255\green255\blue255;\red0\green0\blue0;\red57\green192\blue38;\red170\green171\blue37;
-\red202\green51\blue35;\red125\green125\blue125;\red219\green39\blue218;\red56\green185\blue199;}
-{\*\expandedcolortbl;;\csgray\c0;\cssrgb\c25706\c77963\c19557;\cssrgb\c72331\c71682\c18599;
-\cssrgb\c83899\c28663\c18026;\cssrgb\c56352\c56352\c56352;\cssrgb\c89513\c29736\c88485;\cssrgb\c25546\c77007\c82023;}
-\paperw11900\paperh16840\margl1440\margr1440\vieww28600\viewh15020\viewkind0
-\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
-
-\f0\fs30 \cf2 \CocoaLigature0 test> use company2\
-switched to db company2\
-company2> db.createCollection(\cf3 "employees"\cf2 )\
-\{ ok: \cf4 1\cf2  \}\
-company2> db.employees.insertMany([\
-|   \{\
-|     \cf4 name\cf2 : \cf3 "Arjun\cf2  \cf3 Mehta"\cf2 ,\
-|     age: \cf4 28\cf2 ,\
-|     \cf4 department\cf2 : \cf3 "Sales"\cf2 ,\
-|     skills: [\cf3 "Communication"\cf2 , \cf3 "Negotiation"\cf2 ],\
-|     email: \cf3 "arjun@company.com"\cf2 ,\
-|     experience: \cf4 3\cf2 \
-|   \},\
-|   \{\
-|     \cf4 name\cf2 : \cf3 "Priya\cf2  \cf3 Sharma"\cf2 ,\
-|     age: \cf4 32\cf2 ,\
-|     \cf4 department\cf2 : \cf3 "HR"\cf2 ,\
-|     skills: [\cf3 "Recruitment"\cf2 , \cf3 "Training"\cf2 ],\
-|     email: \cf4 null\cf2 ,\
-|     \cf4 experience\cf2 : \cf4 7\cf2 \
-|   \},\
-|   \{\
-|     \cf4 name\cf2 : \cf3 "Rohit\cf2  \cf3 Verma"\cf2 ,\
-|     age: \cf4 26\cf2 ,\
-|     \cf4 department\cf2 : \cf3 "Development"\cf2 ,\
-|     skills: [\cf3 "Java"\cf2 , \cf3 "MongoDB"\cf2 , \cf3 "NodeJS"\cf2 ],\
-|     email: \cf3 "rohit@company.com"\cf2 ,\
-|     experience: \cf4 2\cf2 \
-|   \},\
-|   \{\
-|     \cf4 name\cf2 : \cf3 "Sneha\cf2  \cf3 Nair"\cf2 ,\
-|     age: \cf4 30\cf2 ,\
-|     \cf4 department\cf2 : \cf3 "Development"\cf2 ,\
-|     skills: [\cf3 "Python"\cf2 , \cf3 "Machine\cf2  \cf3 Learning"\cf2 ],\
-|     email: \cf3 "sneha@company.com"\cf2 ,\
-|     experience: \cf4 5\cf2 \
-|   \},\
-|   \{\
-|     \cf4 name\cf2 : \cf3 "Amit\cf2  \cf3 Patel"\cf2 ,\
-|     age: \cf4 35\cf2 ,\
-|     \cf4 department\cf2 : \cf4 null\cf2 ,\
-|     \cf4 skills\cf2 : [\cf3 "Management"\cf2 , \cf3 "Leadership"\cf2 ],\
-|     email: \cf3 "amit@company.com"\cf2 ,\
-|     experience: \cf4 10\cf2 \
-|   \}\
-| ])\
-| \
-\{\
-  acknowledged: \cf4 true\cf2 ,\
-  insertedIds: \{\
-    \cf3 '0'\cf2 : ObjectId(\cf3 '69100f6296832be7a9a079b0'\cf2 ),\
-    \cf3 '1'\cf2 : ObjectId(\cf3 '69100f6296832be7a9a079b1'\cf2 ),\
-    \cf3 '2'\cf2 : ObjectId(\cf3 '69100f6296832be7a9a079b2'\cf2 ),\
-    \cf3 '3'\cf2 : ObjectId(\cf3 '69100f6296832be7a9a079b3'\cf2 ),\
-    \cf3 '4'\cf2 : ObjectId(\cf3 '69100f6296832be7a9a079b4'\cf2 )\
-  \}\
-\}\
-company2> db.employees.find(\{\cf4 email\cf2 :\cf4 null\cf2 \},\{\cf4 name\cf2 :\cf4 1\cf2 ,\cf4 email\cf2 :\cf4 1\cf2 ,\cf4 age\cf2 :\cf4 0\cf2 \})\
-
-\f1\b \cf5 MongoServerError[Location31254]
-\f0\b0 \cf2 : Cannot do exclusion on field age in inclusion projection\
-company2> db.employees.find(\{\cf4 email\cf2 :\cf4 null\cf2 \},\{\cf4 name\cf2 :\cf4 1\cf2 ,\cf4 email\cf2 :\cf4 1\cf2 \})\
-[\
-  \{\
-    _id: ObjectId(\cf3 '69100f6296832be7a9a079b1'\cf2 ),\
-    name: \cf3 'Priya Sharma'\cf2 ,\
-    email: 
-\f1\b null
-\f0\b0 \
-  \}\
-]\
-company2> db.employees.find(\{\cf4 name\cf2 :\{\cf4 $regex\cf2 :\cf5 /^S/\cf2 ,$options:\cf3 "i"\cf2 \}\}\
-| )\
-[\
-  \{\
-    _id: ObjectId(\cf3 '69100f6296832be7a9a079b3'\cf2 ),\
-    name: \cf3 'Sneha Nair'\cf2 ,\
-    age: \cf4 30\cf2 ,\
-    department: \cf3 'Development'\cf2 ,\
-    skills: [ \cf3 'Python'\cf2 , \cf3 'Machine Learning'\cf2  ],\
-    email: \cf3 'sneha@company.com'\cf2 ,\
-    experience: \cf4 5\cf2 \
-  \}\
-]\
-company2> db.employees.find(\{\cf4 email\cf2 :\{\cf4 $regex\cf2 :\cf5 /company.com/\cf2 )\
-Uncaught:\
-
-\f1\b \cf5 SyntaxError
-\f0\b0 \cf2 : Unexpected token, expected "," (1:46)\
-\
-
-\f1\b \cf5 >
-\f0\b0 \cf6  1 |\cf2  db\cf4 .\cf2 employees\cf4 .\cf2 find(\{email\cf4 :\cf2 \{$regex\cf4 :\cf7 /company.com/\cf2 )\
- \cf6    |\cf2                                                
-\f1\b \cf5 ^
-\f0\b0 \cf2 \
- \cf6  2 |\cf2 \
-\
-company2> db.employees.find(\{\cf4 email\cf2 :\{\cf4 $regex\cf2 :\cf5 /company.com/\cf2 \})\
-Uncaught:\
-
-\f1\b \cf5 SyntaxError
-\f0\b0 \cf2 : Unexpected token, expected "," (1:47)\
-\
-
-\f1\b \cf5 >
-\f0\b0 \cf6  1 |\cf2  db\cf4 .\cf2 employees\cf4 .\cf2 find(\{email\cf4 :\cf2 \{$regex\cf4 :\cf7 /company.com/\cf2 \})\
- \cf6    |\cf2                                                 
-\f1\b \cf5 ^
-\f0\b0 \cf2 \
- \cf6  2 |\cf2 \
-\
-company2> db.employees.find(\{\cf4 email\cf2 :\{\cf4 $regex\cf2 :\cf5 /company.com/\cf2 \}\})\
-[\
-  \{\
-    _id: ObjectId(\cf3 '69100f6296832be7a9a079b0'\cf2 ),\
-    name: \cf3 'Arjun Mehta'\cf2 ,\
-    age: \cf4 28\cf2 ,\
-    department: \cf3 'Sales'\cf2 ,\
-    skills: [ \cf3 'Communication'\cf2 , \cf3 'Negotiation'\cf2  ],\
-    email: \cf3 'arjun@company.com'\cf2 ,\
-    experience: \cf4 3\cf2 \
-  \},\
-  \{\
-    _id: ObjectId(\cf3 '69100f6296832be7a9a079b2'\cf2 ),\
-    name: \cf3 'Rohit Verma'\cf2 ,\
-    age: \cf4 26\cf2 ,\
-    department: \cf3 'Development'\cf2 ,\
-    skills: [ \cf3 'Java'\cf2 , \cf3 'MongoDB'\cf2 , \cf3 'NodeJS'\cf2  ],\
-    email: \cf3 'rohit@company.com'\cf2 ,\
-    experience: \cf4 2\cf2 \
-  \},\
-  \{\
-    _id: ObjectId(\cf3 '69100f6296832be7a9a079b3'\cf2 ),\
-    name: \cf3 'Sneha Nair'\cf2 ,\
-    age: \cf4 30\cf2 ,\
-    department: \cf3 'Development'\cf2 ,\
-    skills: [ \cf3 'Python'\cf2 , \cf3 'Machine Learning'\cf2  ],\
-    email: \cf3 'sneha@company.com'\cf2 ,\
-    experience: \cf4 5\cf2 \
-  \},\
-  \{\
-    _id: ObjectId(\cf3 '69100f6296832be7a9a079b4'\cf2 ),\
-    name: \cf3 'Amit Patel'\cf2 ,\
-    age: \cf4 35\cf2 ,\
-    department: 
-\f1\b null
-\f0\b0 ,\
-    skills: [ \cf3 'Management'\cf2 , \cf3 'Leadership'\cf2  ],\
-    email: \cf3 'amit@company.com'\cf2 ,\
-    experience: \cf4 10\cf2 \
-  \}\
-]\
-company2> db.employees.find(\{\cf4 email\cf2 :\{\cf4 $regex\cf2 :\cf5 /company.com$/\cf2 \}\})\
-[\
-  \{\
-    _id: ObjectId(\cf3 '69100f6296832be7a9a079b0'\cf2 ),\
-    name: \cf3 'Arjun Mehta'\cf2 ,\
-    age: \cf4 28\cf2 ,\
-    department: \cf3 'Sales'\cf2 ,\
-    skills: [ \cf3 'Communication'\cf2 , \cf3 'Negotiation'\cf2  ],\
-    email: \cf3 'arjun@company.com'\cf2 ,\
-    experience: \cf4 3\cf2 \
-  \},\
-  \{\
-    _id: ObjectId(\cf3 '69100f6296832be7a9a079b2'\cf2 ),\
-    name: \cf3 'Rohit Verma'\cf2 ,\
-    age: \cf4 26\cf2 ,\
-    department: \cf3 'Development'\cf2 ,\
-    skills: [ \cf3 'Java'\cf2 , \cf3 'MongoDB'\cf2 , \cf3 'NodeJS'\cf2  ],\
-    email: \cf3 'rohit@company.com'\cf2 ,\
-    experience: \cf4 2\cf2 \
-  \},\
-  \{\
-    _id: ObjectId(\cf3 '69100f6296832be7a9a079b3'\cf2 ),\
-    name: \cf3 'Sneha Nair'\cf2 ,\
-    age: \cf4 30\cf2 ,\
-    department: \cf3 'Development'\cf2 ,\
-    skills: [ \cf3 'Python'\cf2 , \cf3 'Machine Learning'\cf2  ],\
-    email: \cf3 'sneha@company.com'\cf2 ,\
-    experience: \cf4 5\cf2 \
-  \},\
-  \{\
-    _id: ObjectId(\cf3 '69100f6296832be7a9a079b4'\cf2 ),\
-    name: \cf3 'Amit Patel'\cf2 ,\
-    age: \cf4 35\cf2 ,\
-    department: 
-\f1\b null
-\f0\b0 ,\
-    skills: [ \cf3 'Management'\cf2 , \cf3 'Leadership'\cf2  ],\
-    email: \cf3 'amit@company.com'\cf2 ,\
-    experience: \cf4 10\cf2 \
-  \}\
-]\
-company2> db.employees.find(\{\cf4 email\cf2 :\{\cf4 $regex\cf2 :\cf5 /company\\.com$/\cf2 \}\})\
-[\
-  \{\
-    _id: ObjectId(\cf3 '69100f6296832be7a9a079b0'\cf2 ),\
-    name: \cf3 'Arjun Mehta'\cf2 ,\
-    age: \cf4 28\cf2 ,\
-    department: \cf3 'Sales'\cf2 ,\
-    skills: [ \cf3 'Communication'\cf2 , \cf3 'Negotiation'\cf2  ],\
-    email: \cf3 'arjun@company.com'\cf2 ,\
-    experience: \cf4 3\cf2 \
-  \},\
-  \{\
-    _id: ObjectId(\cf3 '69100f6296832be7a9a079b2'\cf2 ),\
-    name: \cf3 'Rohit Verma'\cf2 ,\
-    age: \cf4 26\cf2 ,\
-    department: \cf3 'Development'\cf2 ,\
-    skills: [ \cf3 'Java'\cf2 , \cf3 'MongoDB'\cf2 , \cf3 'NodeJS'\cf2  ],\
-    email: \cf3 'rohit@company.com'\cf2 ,\
-    experience: \cf4 2\cf2 \
-  \},\
-  \{\
-    _id: ObjectId(\cf3 '69100f6296832be7a9a079b3'\cf2 ),\
-    name: \cf3 'Sneha Nair'\cf2 ,\
-    age: \cf4 30\cf2 ,\
-    department: \cf3 'Development'\cf2 ,\
-    skills: [ \cf3 'Python'\cf2 , \cf3 'Machine Learning'\cf2  ],\
-    email: \cf3 'sneha@company.com'\cf2 ,\
-    experience: \cf4 5\cf2 \
-  \},\
-  \{\
-    _id: ObjectId(\cf3 '69100f6296832be7a9a079b4'\cf2 ),\
-    name: \cf3 'Amit Patel'\cf2 ,\
-    age: \cf4 35\cf2 ,\
-    department: 
-\f1\b null
-\f0\b0 ,\
-    skills: [ \cf3 'Management'\cf2 , \cf3 'Leadership'\cf2  ],\
-    email: \cf3 'amit@company.com'\cf2 ,\
-    experience: \cf4 10\cf2 \
-  \}\
-]\
-company2> db.employees.find(\{\cf4 skills\cf2 :\cf3 "MongoDB"\cf2 \})\
-[\
-  \{\
-    _id: ObjectId(\cf3 '69100f6296832be7a9a079b2'\cf2 ),\
-    name: \cf3 'Rohit Verma'\cf2 ,\
-    age: \cf4 26\cf2 ,\
-    department: \cf3 'Development'\cf2 ,\
-    skills: [ \cf3 'Java'\cf2 , \cf3 'MongoDB'\cf2 , \cf3 'NodeJS'\cf2  ],\
-    email: \cf3 'rohit@company.com'\cf2 ,\
-    experience: \cf4 2\cf2 \
-  \}\
-]\
-company2> db.employees.find(\{\cf4 skills\cf2 :\cf3 "MongoDB"\cf2 \},\{\cf4 name\cf2 :\cf4 1\cf2 \})\
-[ \{ _id: ObjectId(\cf3 '69100f6296832be7a9a079b2'\cf2 ), name: \cf3 'Rohit Verma'\cf2  \} ]\
-company2> db.employees.find(\{\cf4 skills\cf2 :\cf3 "MongoDB"\cf2 \},\{\cf4 name\cf2 :\cf4 1\cf2 ,\cf4 _id\cf2 :\cf4 0\cf2 \})\
-[ \{ name: \cf3 'Rohit Verma'\cf2  \} ]\
-company2> db.employees.find(\{\cf4 skills\cf2 :\{\cf4 $size\cf2 :\cf4 2\cf2 \}\},\{\cf4 name\cf2 :\cf4 1\cf2 ,\cf4 _id\cf2 :\cf4 0\cf2 \})\
-[\
-  \{ name: \cf3 'Arjun Mehta'\cf2  \},\
-  \{ name: \cf3 'Priya Sharma'\cf2  \},\
-  \{ name: \cf3 'Sneha Nair'\cf2  \},\
-  \{ name: \cf3 'Amit Patel'\cf2  \}\
-]\
-company2> db.employees.find(\{\cf4 skills\cf2 :\{\cf4 $size\cf2 :\cf4 2\cf2 \}\},\{\cf4 name\cf2 :\cf4 1\cf2 ,\cf4 _id\cf2 :\cf4 0\cf2 ,\cf4 skills\cf2 :\cf4 1\cf2 \})\
-[\
-  \{ name: \cf3 'Arjun Mehta'\cf2 , skills: [ \cf3 'Communication'\cf2 , \cf3 'Negotiation'\cf2  ] \},\
-  \{ name: \cf3 'Priya Sharma'\cf2 , skills: [ \cf3 'Recruitment'\cf2 , \cf3 'Training'\cf2  ] \},\
-  \{ name: \cf3 'Sneha Nair'\cf2 , skills: [ \cf3 'Python'\cf2 , \cf3 'Machine Learning'\cf2  ] \},\
-  \{ name: \cf3 'Amit Patel'\cf2 , skills: [ \cf3 'Management'\cf2 , \cf3 'Leadership'\cf2  ] \}\
-]\
-company2> db.employees.find(\{\cf4 $where\cf2 :\{age>\cf4 20\cf2 \}\})\
-Uncaught:\
-
-\f1\b \cf5 SyntaxError
-\f0\b0 \cf2 : Unexpected token, expected "," (1:30)\
-\
-
-\f1\b \cf5 >
-\f0\b0 \cf6  1 |\cf2  db\cf4 .\cf2 employees\cf4 .\cf2 find(\{$where\cf4 :\cf2 \{age\cf4 >\cf7 20\cf2 \}\})\
- \cf6    |\cf2                                
-\f1\b \cf5 ^
-\f0\b0 \cf2 \
- \cf6  2 |\cf2 \
-\
-company2> db.employees.find(\{\cf4 $where\cf2 :\{\cf3 "this.age>20"\cf2 \}\})\
-Uncaught:\
-
-\f1\b \cf5 SyntaxError
-\f0\b0 \cf2 : Unexpected token (1:40)\
-\
-
-\f1\b \cf5 >
-\f0\b0 \cf6  1 |\cf2  db\cf4 .\cf2 employees\cf4 .\cf2 find(\{$where\cf4 :\cf2 \{\cf3 "this.age>20"\cf2 \}\})\
- \cf6    |\cf2                                          
-\f1\b \cf5 ^
-\f0\b0 \cf2 \
- \cf6  2 |\cf2 \
-\
-company2> db.employees.find(\{\cf4 $where\cf2 :\cf3 "this.age>20"\cf2 \})\
-[\
-  \{\
-    _id: ObjectId(\cf3 '69100f6296832be7a9a079b0'\cf2 ),\
-    name: \cf3 'Arjun Mehta'\cf2 ,\
-    age: \cf4 28\cf2 ,\
-    department: \cf3 'Sales'\cf2 ,\
-    skills: [ \cf3 'Communication'\cf2 , \cf3 'Negotiation'\cf2  ],\
-    email: \cf3 'arjun@company.com'\cf2 ,\
-    experience: \cf4 3\cf2 \
-  \},\
-  \{\
-    _id: ObjectId(\cf3 '69100f6296832be7a9a079b1'\cf2 ),\
-    name: \cf3 'Priya Sharma'\cf2 ,\
-    age: \cf4 32\cf2 ,\
-    department: \cf3 'HR'\cf2 ,\
-    skills: [ \cf3 'Recruitment'\cf2 , \cf3 'Training'\cf2  ],\
-    email: 
-\f1\b null
-\f0\b0 ,\
-    experience: \cf4 7\cf2 \
-  \},\
-  \{\
-    _id: ObjectId(\cf3 '69100f6296832be7a9a079b2'\cf2 ),\
-    name: \cf3 'Rohit Verma'\cf2 ,\
-    age: \cf4 26\cf2 ,\
-    department: \cf3 'Development'\cf2 ,\
-    skills: [ \cf3 'Java'\cf2 , \cf3 'MongoDB'\cf2 , \cf3 'NodeJS'\cf2  ],\
-    email: \cf3 'rohit@company.com'\cf2 ,\
-    experience: \cf4 2\cf2 \
-  \},\
-  \{\
-    _id: ObjectId(\cf3 '69100f6296832be7a9a079b3'\cf2 ),\
-    name: \cf3 'Sneha Nair'\cf2 ,\
-    age: \cf4 30\cf2 ,\
-    department: \cf3 'Development'\cf2 ,\
-    skills: [ \cf3 'Python'\cf2 , \cf3 'Machine Learning'\cf2  ],\
-    email: \cf3 'sneha@company.com'\cf2 ,\
-    experience: \cf4 5\cf2 \
-  \},\
-  \{\
-    _id: ObjectId(\cf3 '69100f6296832be7a9a079b4'\cf2 ),\
-    name: \cf3 'Amit Patel'\cf2 ,\
-    age: \cf4 35\cf2 ,\
-    department: 
-\f1\b null
-\f0\b0 ,\
-    skills: [ \cf3 'Management'\cf2 , \cf3 'Leadership'\cf2  ],\
-    email: \cf3 'amit@company.com'\cf2 ,\
-    experience: \cf4 10\cf2 \
-  \}\
-]\
-company2> db.employees.find(\{\cf4 $where\cf2 :\cf8 function\cf2 ()\{\cf8 return\cf2  \cf8 this\cf2 .experience>(\cf8 this\cf2 .age>\cf4 5\cf2 );\}\}.\{\cf4 name\cf2 :\cf4 1\cf2 ,\cf4 _id\cf2 :\cf4 0\cf2 \})\
-Uncaught:\
-
-\f1\b \cf5 SyntaxError
-\f0\b0 \cf2 : Unexpected token (1:76)\
-\
-
-\f1\b \cf5 >
-\f0\b0 \cf6  1 |\cf2  db\cf4 .\cf2 employees\cf4 .\cf2 find(\{$where\cf4 :\cf8 function\cf2 ()\{\cf8 return\cf2  \cf8 this\cf4 .\cf2 experience\cf4 >\cf2 (\cf8 this\cf4 .\cf2 age\cf4 >\cf7 5\cf2 )\cf4 ;\cf2 \}\}\cf4 .\cf2 \{name\cf4 :\cf7 1\cf4 ,\cf2 _id\cf4 :\cf7 0\cf2 \})\
- \cf6    |\cf2                                                                              
-\f1\b \cf5 ^
-\f0\b0 \cf2 \
- \cf6  2 |\cf2 \
-\
-company2> db.employees.find(\{\cf4 $where\cf2 :\cf8 function\cf2 ()\{\cf8 return\cf2  \cf8 this\cf2 .experience>(\cf8 this\cf2 .age>\cf4 5\cf2 );\}\},\{\cf4 name\cf2 :\cf4 1\cf2 ,\cf4 _id\cf2 :\cf4 0\cf2 \})\
-[\
-  \{ name: \cf3 'Arjun Mehta'\cf2  \},\
-  \{ name: \cf3 'Priya Sharma'\cf2  \},\
-  \{ name: \cf3 'Rohit Verma'\cf2  \},\
-  \{ name: \cf3 'Sneha Nair'\cf2  \},\
-  \{ name: \cf3 'Amit Patel'\cf2  \}\
-]\
-company2> db.employees.find(\{\cf4 $where\cf2 :\cf3 "this.name.length>10"\cf2 \})\
-[\
-  \{\
-    _id: ObjectId(\cf3 '69100f6296832be7a9a079b0'\cf2 ),\
-    name: \cf3 'Arjun Mehta'\cf2 ,\
-    age: \cf4 28\cf2 ,\
-    department: \cf3 'Sales'\cf2 ,\
-    skills: [ \cf3 'Communication'\cf2 , \cf3 'Negotiation'\cf2  ],\
-    email: \cf3 'arjun@company.com'\cf2 ,\
-    experience: \cf4 3\cf2 \
-  \},\
-  \{\
-    _id: ObjectId(\cf3 '69100f6296832be7a9a079b1'\cf2 ),\
-    name: \cf3 'Priya Sharma'\cf2 ,\
-    age: \cf4 32\cf2 ,\
-    department: \cf3 'HR'\cf2 ,\
-    skills: [ \cf3 'Recruitment'\cf2 , \cf3 'Training'\cf2  ],\
-    email: 
-\f1\b null
-\f0\b0 ,\
-    experience: \cf4 7\cf2 \
-  \},\
-  \{\
-    _id: ObjectId(\cf3 '69100f6296832be7a9a079b2'\cf2 ),\
-    name: \cf3 'Rohit Verma'\cf2 ,\
-    age: \cf4 26\cf2 ,\
-    department: \cf3 'Development'\cf2 ,\
-    skills: [ \cf3 'Java'\cf2 , \cf3 'MongoDB'\cf2 , \cf3 'NodeJS'\cf2  ],\
-    email: \cf3 'rohit@company.com'\cf2 ,\
-    experience: \cf4 2\cf2 \
-  \}\
-]\
-company2> db.employees.find(\{\cf4 $where\cf2 :\cf3 "this.department && this.department[0] === 'D'"\cf2 \})\
-[\
-  \{\
-    _id: ObjectId(\cf3 '69100f6296832be7a9a079b2'\cf2 ),\
-    name: \cf3 'Rohit Verma'\cf2 ,\
-    age: \cf4 26\cf2 ,\
-    department: \cf3 'Development'\cf2 ,\
-    skills: [ \cf3 'Java'\cf2 , \cf3 'MongoDB'\cf2 , \cf3 'NodeJS'\cf2  ],\
-    email: \cf3 'rohit@company.com'\cf2 ,\
-    experience: \cf4 2\cf2 \
-  \},\
-  \{\
-    _id: ObjectId(\cf3 '69100f6296832be7a9a079b3'\cf2 ),\
-    name: \cf3 'Sneha Nair'\cf2 ,\
-    age: \cf4 30\cf2 ,\
-    department: \cf3 'Development'\cf2 ,\
-    skills: [ \cf3 'Python'\cf2 , \cf3 'Machine Learning'\cf2  ],\
-    email: \cf3 'sneha@company.com'\cf2 ,\
-    experience: \cf4 5\cf2 \
-  \}\
-]\
-company2> \
+test> use company2
+switched to db company2
+company2> db.createCollection("employees")
+{ ok: 1 }
+company2> db.employees.insertMany([
+|   {
+|     name: "Arjun Mehta",
+|     age: 28,
+|     department: "Sales",
+|     skills: ["Communication", "Negotiation"],
+|     email: "arjun@company.com",
+|     experience: 3
+|   },
+|   {
+|     name: "Priya Sharma",
+|     age: 32,
+|     department: "HR",
+|     skills: ["Recruitment", "Training"],
+|     email: null,
+|     experience: 7
+|   },
+|   {
+|     name: "Rohit Verma",
+|     age: 26,
+|     department: "Development",
+|     skills: ["Java", "MongoDB", "NodeJS"],
+|     email: "rohit@company.com",
+|     experience: 2
+|   },
+|   {
+|     name: "Sneha Nair",
+|     age: 30,
+|     department: "Development",
+|     skills: ["Python", "Machine Learning"],
+|     email: "sneha@company.com",
+|     experience: 5
+|   },
+|   {
+|     name: "Amit Patel",
+|     age: 35,
+|     department: null,
+|     skills: ["Management", "Leadership"],
+|     email: "amit@company.com",
+|     experience: 10
+|   }
+| ])
+| 
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('69100f6296832be7a9a079b0'),
+    '1': ObjectId('69100f6296832be7a9a079b1'),
+    '2': ObjectId('69100f6296832be7a9a079b2'),
+    '3': ObjectId('69100f6296832be7a9a079b3'),
+    '4': ObjectId('69100f6296832be7a9a079b4')
+  }
 }
+company2> db.employees.find({email:null},{name:1,email:1,age:0})
+MongoServerError[Location31254]: Cannot do exclusion on field age in inclusion projection
+company2> db.employees.find({email:null},{name:1,email:1})
+[
+  {
+    _id: ObjectId('69100f6296832be7a9a079b1'),
+    name: 'Priya Sharma',
+    email: null
+  }
+]
+company2> db.employees.find({name:{$regex:/^S/,$options:"i"}}
+| )
+[
+  {
+    _id: ObjectId('69100f6296832be7a9a079b3'),
+    name: 'Sneha Nair',
+    age: 30,
+    department: 'Development',
+    skills: [ 'Python', 'Machine Learning' ],
+    email: 'sneha@company.com',
+    experience: 5
+  }
+]
+company2> db.employees.find({email:{$regex:/company.com/)
+Uncaught:
+SyntaxError: Unexpected token, expected "," (1:46)
+
+> 1 | db.employees.find({email:{$regex:/company.com/)
+    |                                               ^
+  2 |
+
+company2> db.employees.find({email:{$regex:/company.com/})
+Uncaught:
+SyntaxError: Unexpected token, expected "," (1:47)
+
+> 1 | db.employees.find({email:{$regex:/company.com/})
+    |                                                ^
+  2 |
+
+company2> db.employees.find({email:{$regex:/company.com/}})
+[
+  {
+    _id: ObjectId('69100f6296832be7a9a079b0'),
+    name: 'Arjun Mehta',
+    age: 28,
+    department: 'Sales',
+    skills: [ 'Communication', 'Negotiation' ],
+    email: 'arjun@company.com',
+    experience: 3
+  },
+  {
+    _id: ObjectId('69100f6296832be7a9a079b2'),
+    name: 'Rohit Verma',
+    age: 26,
+    department: 'Development',
+    skills: [ 'Java', 'MongoDB', 'NodeJS' ],
+    email: 'rohit@company.com',
+    experience: 2
+  },
+  {
+    _id: ObjectId('69100f6296832be7a9a079b3'),
+    name: 'Sneha Nair',
+    age: 30,
+    department: 'Development',
+    skills: [ 'Python', 'Machine Learning' ],
+    email: 'sneha@company.com',
+    experience: 5
+  },
+  {
+    _id: ObjectId('69100f6296832be7a9a079b4'),
+    name: 'Amit Patel',
+    age: 35,
+    department: null,
+    skills: [ 'Management', 'Leadership' ],
+    email: 'amit@company.com',
+    experience: 10
+  }
+]
+company2> db.employees.find({email:{$regex:/company.com$/}})
+[
+  {
+    _id: ObjectId('69100f6296832be7a9a079b0'),
+    name: 'Arjun Mehta',
+    age: 28,
+    department: 'Sales',
+    skills: [ 'Communication', 'Negotiation' ],
+    email: 'arjun@company.com',
+    experience: 3
+  },
+  {
+    _id: ObjectId('69100f6296832be7a9a079b2'),
+    name: 'Rohit Verma',
+    age: 26,
+    department: 'Development',
+    skills: [ 'Java', 'MongoDB', 'NodeJS' ],
+    email: 'rohit@company.com',
+    experience: 2
+  },
+  {
+    _id: ObjectId('69100f6296832be7a9a079b3'),
+    name: 'Sneha Nair',
+    age: 30,
+    department: 'Development',
+    skills: [ 'Python', 'Machine Learning' ],
+    email: 'sneha@company.com',
+    experience: 5
+  },
+  {
+    _id: ObjectId('69100f6296832be7a9a079b4'),
+    name: 'Amit Patel',
+    age: 35,
+    department: null,
+    skills: [ 'Management', 'Leadership' ],
+    email: 'amit@company.com',
+    experience: 10
+  }
+]
+company2> db.employees.find({email:{$regex:/company\.com$/}})
+[
+  {
+    _id: ObjectId('69100f6296832be7a9a079b0'),
+    name: 'Arjun Mehta',
+    age: 28,
+    department: 'Sales',
+    skills: [ 'Communication', 'Negotiation' ],
+    email: 'arjun@company.com',
+    experience: 3
+  },
+  {
+    _id: ObjectId('69100f6296832be7a9a079b2'),
+    name: 'Rohit Verma',
+    age: 26,
+    department: 'Development',
+    skills: [ 'Java', 'MongoDB', 'NodeJS' ],
+    email: 'rohit@company.com',
+    experience: 2
+  },
+  {
+    _id: ObjectId('69100f6296832be7a9a079b3'),
+    name: 'Sneha Nair',
+    age: 30,
+    department: 'Development',
+    skills: [ 'Python', 'Machine Learning' ],
+    email: 'sneha@company.com',
+    experience: 5
+  },
+  {
+    _id: ObjectId('69100f6296832be7a9a079b4'),
+    name: 'Amit Patel',
+    age: 35,
+    department: null,
+    skills: [ 'Management', 'Leadership' ],
+    email: 'amit@company.com',
+    experience: 10
+  }
+]
+company2> db.employees.find({skills:"MongoDB"})
+[
+  {
+    _id: ObjectId('69100f6296832be7a9a079b2'),
+    name: 'Rohit Verma',
+    age: 26,
+    department: 'Development',
+    skills: [ 'Java', 'MongoDB', 'NodeJS' ],
+    email: 'rohit@company.com',
+    experience: 2
+  }
+]
+company2> db.employees.find({skills:"MongoDB"},{name:1})
+[ { _id: ObjectId('69100f6296832be7a9a079b2'), name: 'Rohit Verma' } ]
+company2> db.employees.find({skills:"MongoDB"},{name:1,_id:0})
+[ { name: 'Rohit Verma' } ]
+company2> db.employees.find({skills:{$size:2}},{name:1,_id:0})
+[
+  { name: 'Arjun Mehta' },
+  { name: 'Priya Sharma' },
+  { name: 'Sneha Nair' },
+  { name: 'Amit Patel' }
+]
+company2> db.employees.find({skills:{$size:2}},{name:1,_id:0,skills:1})
+[
+  { name: 'Arjun Mehta', skills: [ 'Communication', 'Negotiation' ] },
+  { name: 'Priya Sharma', skills: [ 'Recruitment', 'Training' ] },
+  { name: 'Sneha Nair', skills: [ 'Python', 'Machine Learning' ] },
+  { name: 'Amit Patel', skills: [ 'Management', 'Leadership' ] }
+]
+company2> db.employees.find({$where:{age>20}})
+Uncaught:
+SyntaxError: Unexpected token, expected "," (1:30)
+
+> 1 | db.employees.find({$where:{age>20}})
+    |                               ^
+  2 |
+
+company2> db.employees.find({$where:{"this.age>20"}})
+Uncaught:
+SyntaxError: Unexpected token (1:40)
+
+> 1 | db.employees.find({$where:{"this.age>20"}})
+    |                                         ^
+  2 |
+
+company2> db.employees.find({$where:"this.age>20"})
+[
+  {
+    _id: ObjectId('69100f6296832be7a9a079b0'),
+    name: 'Arjun Mehta',
+    age: 28,
+    department: 'Sales',
+    skills: [ 'Communication', 'Negotiation' ],
+    email: 'arjun@company.com',
+    experience: 3
+  },
+  {
+    _id: ObjectId('69100f6296832be7a9a079b1'),
+    name: 'Priya Sharma',
+    age: 32,
+    department: 'HR',
+    skills: [ 'Recruitment', 'Training' ],
+    email: null,
+    experience: 7
+  },
+  {
+    _id: ObjectId('69100f6296832be7a9a079b2'),
+    name: 'Rohit Verma',
+    age: 26,
+    department: 'Development',
+    skills: [ 'Java', 'MongoDB', 'NodeJS' ],
+    email: 'rohit@company.com',
+    experience: 2
+  },
+  {
+    _id: ObjectId('69100f6296832be7a9a079b3'),
+    name: 'Sneha Nair',
+    age: 30,
+    department: 'Development',
+    skills: [ 'Python', 'Machine Learning' ],
+    email: 'sneha@company.com',
+    experience: 5
+  },
+  {
+    _id: ObjectId('69100f6296832be7a9a079b4'),
+    name: 'Amit Patel',
+    age: 35,
+    department: null,
+    skills: [ 'Management', 'Leadership' ],
+    email: 'amit@company.com',
+    experience: 10
+  }
+]
+company2> db.employees.find({$where:function(){return this.experience>(this.age>5);}}.{name:1,_id:0})
+Uncaught:
+SyntaxError: Unexpected token (1:76)
+
+> 1 | db.employees.find({$where:function(){return this.experience>(this.age>5);}}.{name:1,_id:0})
+    |                                                                             ^
+  2 |
+
+company2> db.employees.find({$where:function(){return this.experience>(this.age>5);}},{name:1,_id:0})
+[
+  { name: 'Arjun Mehta' },
+  { name: 'Priya Sharma' },
+  { name: 'Rohit Verma' },
+  { name: 'Sneha Nair' },
+  { name: 'Amit Patel' }
+]
+company2> db.employees.find({$where:"this.name.length>10"})
+[
+  {
+    _id: ObjectId('69100f6296832be7a9a079b0'),
+    name: 'Arjun Mehta',
+    age: 28,
+    department: 'Sales',
+    skills: [ 'Communication', 'Negotiation' ],
+    email: 'arjun@company.com',
+    experience: 3
+  },
+  {
+    _id: ObjectId('69100f6296832be7a9a079b1'),
+    name: 'Priya Sharma',
+    age: 32,
+    department: 'HR',
+    skills: [ 'Recruitment', 'Training' ],
+    email: null,
+    experience: 7
+  },
+  {
+    _id: ObjectId('69100f6296832be7a9a079b2'),
+    name: 'Rohit Verma',
+    age: 26,
+    department: 'Development',
+    skills: [ 'Java', 'MongoDB', 'NodeJS' ],
+    email: 'rohit@company.com',
+    experience: 2
+  }
+]
+company2> db.employees.find({$where:"this.department && this.department[0] === 'D'"})
+[
+  {
+    _id: ObjectId('69100f6296832be7a9a079b2'),
+    name: 'Rohit Verma',
+    age: 26,
+    department: 'Development',
+    skills: [ 'Java', 'MongoDB', 'NodeJS' ],
+    email: 'rohit@company.com',
+    experience: 2
+  },
+  {
+    _id: ObjectId('69100f6296832be7a9a079b3'),
+    name: 'Sneha Nair',
+    age: 30,
+    department: 'Development',
+    skills: [ 'Python', 'Machine Learning' ],
+    email: 'sneha@company.com',
+    experience: 5
+  }
+]
+company2> 
