@@ -285,4 +285,33 @@ school2> db.students.find().limit(3)
     city: 'Pune'
   }
 ]
-school2> 
+school2> // 1. Find all documents
+db.students.find();
+
+// 2. Find one document
+db.students.findOne({ name: "Alice" });
+
+// 3. Find by condition
+db.students.find({ age: { $gt: 20 } });
+
+// 4. Find with OR condition
+db.students.find({ $or: [{ dept: "CS" }, { age: { $lt: 22 } }] });
+
+// 5. Projection (show only name and dept)
+db.students.find({}, { name: 1, dept: 1, _id: 0 });
+
+// 6. Limit results
+db.students.find().limit(2);
+
+// 7. Skip results
+db.students.find().skip(1);
+
+// 8. Sort ascending
+db.students.find().sort({ age: 1 });
+
+// 9. Sort descending
+db.students.find().sort({ age: -1 });
+
+// 10. Count number of students
+db.students.find().count();
+
